@@ -1,0 +1,124 @@
+.dresses-section {
+  background-color: var(--color-white);
+}
+
+.dress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.dress-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-beige-medium);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.dress-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dress-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  background-color: var(--color-beige-light);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dress-image-wrapper.placeholder-fallback::before {
+  content: '✨ Bella Bride Collection ✨';
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--color-rose-gold);
+  text-align: center;
+}
+
+.dress-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.dress-card:hover .dress-image {
+  transform: scale(1.05);
+}
+
+.dress-tag {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--color-text-dark);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.dress-info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.dress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.dress-name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+}
+
+.dress-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-rose-gold);
+}
+
+.dress-description {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.dress-action {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-rose-gold);
+  transition: var(--transition-smooth);
+  display: inline-block;
+}
+
+.dress-action:hover {
+  color: var(--color-text-dark);
+}
+
+@media (max-width: 768px) {
+  .dress-grid {
+    grid-template-columns: 1fr;
+  }
+}
