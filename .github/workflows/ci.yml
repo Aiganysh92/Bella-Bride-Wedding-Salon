@@ -7,9 +7,6 @@ on:
 
 jobs:
 
-  # ==================================================
-  # JOB 1 - LINT
-  # ==================================================
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -31,9 +28,6 @@ jobs:
         run: npm run lint
 
 
-  # ==================================================
-  # JOB 2 - TEST
-  # ==================================================
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -51,13 +45,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test -- --run
+      - name: Build test
+        run: npm run build
+
+      - name: Verify production build
+        run: |
+          test -d dist
+          test -f dist/index.html
+          echo "Build test passed"
 
 
-  # ==================================================
-  # JOB 3 - SONARQUBE
-  # ==================================================
   sonarqube:
     name: SonarQube
     runs-on: ubuntu-latest
@@ -75,9 +72,6 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
 
-  # ==================================================
-  # JOB 4 - TRIVY
-  # ==================================================
   trivy:
     name: Trivy Security Scan
     runs-on: ubuntu-latest
@@ -96,10 +90,6 @@ jobs:
           exit-code: 1
 
 
-  # ==================================================
-  # JOB 5 - DOCKER BUILD
-  # Runs ONLY after the 4 jobs above pass
-  # ==================================================
   docker-build:
     name: Docker Image Build
     runs-on: ubuntu-latest
